@@ -48,4 +48,20 @@ while running:
             x_change = (keys[pygame.K_RIGHT]- keys[pygame.K_LEFT]) * Movement_Speed
             y_change = (keys[pygame.K_DOWN]- keys[pygame.K_UP]) * Movement_Speed
             sprite_1.move(x_change, y_change)
-            if sprite_1.rect.co
+    if sprite_1.rect.colliderect(sprite_2.rect):
+        all_sprites.remove(sprite_2)
+        won = True
+    # Drawing
+screen.blit(background_image, (0, 0))
+all_sprites.draw(screen)
+
+# Display win message
+if won:
+    win_text = font.render("You win!", True, pygame.Color('black'))
+    screen.blit(win_text, ((Screen_Width - win_text.get_width()) // 2,
+                           (Screen_Height - win_text.get_height()) // 2))
+
+pygame.display.flip()
+clock.tick(90)
+
+pygame.quit()
