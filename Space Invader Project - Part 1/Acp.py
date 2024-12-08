@@ -18,7 +18,7 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Background
-background = pygame.image.load('background.png')
+background = pygame.image.load("C:\\Users\\svibh\\OneDrive\\Desktop\\Codingal\\Space Invader Project - Part 1\\Acp_Level_Up_this_game.png")
 
 # Caption and Icon
 pygame.display.set_caption("Collision Game")
@@ -48,6 +48,13 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 textX = 10
 textY = 10
 
+# Load Level Up Image
+level_up_img = pygame.image.load("C:\\Users\\svibh\\OneDrive\\Desktop\\Codingal\\Space Invader Project - Part 1\\Acp_Level_Up_this_game.png")
+
+# Play Background Sound
+pygame.mixer.music.load("C:\\Users\\svibh\\OneDrive\\Desktop\\Codingal\\Space Invader Project - Part 1\\super-mario-bros-4293.mp3")
+pygame.mixer.music.play(-1, 0.0)  # Loop the music indefinitely
+
 def show_score(x, y):
     # Display the current score on the screen.
     score = font.render("Score : " + str(score_value), True, (255, 255, 255))
@@ -70,7 +77,10 @@ def isCollision(playerX, playerY, enemyX, enemyY):
 running = True
 while running:
     screen.fill((0, 0, 0))
-    screen.blit(background, (0, 0))
+    screen.blit(background, (0, 0))  # Use the new background image here
+
+    # Display the Level Up image at the top right corner (or wherever you'd like)
+    screen.blit(level_up_img, (SCREEN_WIDTH - 200, 20))  # Position it near the top-right corner
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -105,3 +115,6 @@ while running:
 
     # Update the screen
     pygame.display.update()
+
+# Stop the music when the game ends
+pygame.mixer.music.stop()
